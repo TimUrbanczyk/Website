@@ -1,0 +1,31 @@
+.welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /
+    padding: 0 2rem;
+}
+
+
+.headlines {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.portrait {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.image {
+    border-radius: 50%;
+    object-fit: cover
+}

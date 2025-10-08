@@ -1,0 +1,23 @@
+.cardList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.cardsGrid {
+    display: grid;
+    grid-auto-flow: row;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.text {
+    max-width: 480px;
+}
