@@ -1,11 +1,45 @@
 ---
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import CardList from "../components/CardList.astro";
+import {client} from "../lib/sanity";
+const cardListData = await client.fetch(`*[_type == "cardList"][0]{
+    headline,
+    cards[]{
+        headline,
+        sublheadline,
+        text,
+        image,
+        video
+    }
+}`);
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const welcomeData = await client.fetch(`*[_type == "welcome"][0]{
+	headline,
+	subHeadline,
+	image
+}`);
+
 ---
+<html>
+	<body>
+		<div class="global-background"></div>
+		<main>
+			<slot>
+				<Welcome {...welcomeData}/>
+				<CardList {...cardListData}/>
+			</slot>
+		</main>
+	</body>
+</html>
 
-<Layout>
-	<Welcome />
-</Layout>
+<style>
+	.global-background {
+		position: fixed;
+		inset: 0;
+		z-index: -1;
+		background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+		background-size: cover;
+		background-attachment: fixed;
+		}
+</style>
