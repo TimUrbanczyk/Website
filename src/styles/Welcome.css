@@ -1,16 +1,13 @@
 .welcome {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    position: relative; /
     padding: 0 2rem;
+    gap: 1rem;
 }
 
-
 .headlines {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    grid-column: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,14 +15,49 @@
 }
 
 .portrait {
+    grid-column: 3;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    border-radius: 50%;
-    overflow: hidden;
 }
 
 .image {
     border-radius: 50%;
-    object-fit: cover
+    object-fit: cover;
+    max-width: 100%;
+    height: auto;
+}
+
+
+@media (max-width: 768px) {
+    .welcome {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .headlines {
+        grid-column: 1;
+        order: 2;
+    }
+
+    .portrait {
+        grid-column: 1;
+        justify-content: center;
+        order: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome {
+        padding: 0 0.5rem;
+    }
+
+    .headlines h1 {
+        font-size: 1.5rem;
+    }
+
+    .headlines p {
+        font-size: 0.9rem;
+    }
 }
