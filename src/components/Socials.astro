@@ -1,0 +1,31 @@
+---
+import {urlFor} from '../lib/sanity.ts'
+import '../styles/Socials.css'
+
+export type social ={
+    socialLink: string,
+    socialIcon: string,
+}
+
+const {
+    socials = []
+} = Astro.props;
+---
+
+
+<div class="socials">
+    <div class="background">
+        <div class="socialsList">
+            {socials.map((social: social) => {
+                return(
+                    <div class="socialItem">
+                        <figure class="socialIcon">
+                            <a href={social.socialLink}>
+                                <img src={urlFor(social.socialIcon)} width="100" height="100"/>
+                            </a>
+                        </figure>
+                    </div>)
+            })}
+        </div>
+    </div>
+</div>
