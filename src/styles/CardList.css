@@ -8,7 +8,10 @@
 
 .cardsGrid {
     display: grid;
-    grid-auto-flow: row;
+    grid-template-columns: repeat(2, 1fr);
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10rem;
 }
 .card {
     display: flex;
@@ -17,6 +20,8 @@
     align-items: center;
     text-align: center;
 }
+
+
 
 .text {
     max-width: 480px;
