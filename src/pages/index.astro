@@ -1,6 +1,7 @@
 ---
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import "../styles/index.css"
 import CardList from "../components/CardList.astro";
 import Socials from "../components/Socials.astro"
 import {client} from "../lib/sanity";
@@ -48,13 +49,4 @@ const socialsData = await client.fetch(`*[_type == "socialList"][0]{
 	</body>
 </html>
 
-<style>
-	.global-background {
-		position: fixed;
-		inset: 0;
-		z-index: -1;
-		background: linear-gradient(135deg, #005c97, #363795, #4ca1af, #00c6ff);
-		background-size: cover;
-		background-attachment: fixed;
-		}
-</style>
+

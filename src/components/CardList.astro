@@ -21,13 +21,13 @@ const {
 ---
 
 <section class="cardList">
-    <h2>{headline}</h2>
+    <h2 class="text">{headline}</h2>
     <div class="cardsGrid">
         {cards.map((carditem : card) => {
             return(
                     <article class="card">
-                        <h3>{carditem.headline}</h3>
-                        <a>{carditem.subheadline}</a>
+                        <h3 class="text">{carditem.headline}</h3>
+                        <a class="text">{carditem.subheadline}</a>
                         {carditem.image &&
                                 <a href="https://google.com">
                                     <img src={urlFor(carditem.image)}  alt={headline} class="img" />
