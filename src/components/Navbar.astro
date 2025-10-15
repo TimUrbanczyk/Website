@@ -1,0 +1,30 @@
+---
+import "../styles/Navbar.css"
+
+type navbar = {
+    navbarHeadline: string,
+    navbarItems: navbarItem[]
+}
+
+type navbarItem = {
+    itemLink: string,
+    itemText: string
+}
+const {
+    navbarHeadline,
+    navbarItems = []
+}=Astro.props
+---
+
+<div class="navbar">
+    <h1 class="text">{navbarHeadline}</h1>
+    <div class="navbarItemList">
+        {navbarItems.map((navbarItem : navbarItem) => {
+            return(
+                <div class="navbarItem">
+                   <a href={navbarItem.itemLink}>{navbarItem.itemText}</a>
+                </div>
+           )
+        })}
+    </div>
+</div>
