@@ -1,0 +1,53 @@
+---
+import CardList from "../components/CardList.astro";
+import Socials from "../components/Socials.astro";
+import Navbar from "../components/Navbar.astro";
+import {client} from "../lib/sanity";
+import "../styles/page.css"
+
+
+const cardListData = await client.fetch(`*[_type == "cardList"][0]{
+    headline,
+    cards[]{
+        headline,
+        subheadline,
+        text,
+        cardLink,
+        image,
+        video
+    }
+}`);
+
+
+const socialsData = await client.fetch(`*[_type == "socialList"][0]{
+  socials[]{
+    socialLink,
+    socialIcon
+  }
+}`)
+
+const navbarData = await client.fetch(`*[_type == "navbar"][0]{
+	navbarHeadline,
+	navbarItems[]{
+		itemText,
+		itemLink
+	}
+}`)
+---
+
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+</head>
+<body>
+<div class="global-background"></div>
+<main>
+    <slot>
+        <Navbar {...navbarData}/>
+        <CardList {...cardListData}/>
+        <Socials {...socialsData}/>
+    </slot>
+</main>
+</body>
+</html>
