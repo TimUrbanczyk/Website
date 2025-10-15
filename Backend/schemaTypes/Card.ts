@@ -22,6 +22,11 @@ export const card = defineType({
             type: 'text',
         }),
         defineField({
+            name: 'cardLink',
+            title: 'CardLink',
+            type: 'string'
+        }),
+        defineField({
             name: 'image',
             title: 'Image',
             type: 'image',

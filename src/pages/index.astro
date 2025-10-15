@@ -11,8 +11,9 @@ const cardListData = await client.fetch(`*[_type == "cardList"][0]{
     headline,
     cards[]{
         headline,
-        sublheadline,
+        subheadline,
         text,
+        cardLink,
         image,
         video
     }
@@ -50,8 +51,9 @@ const navbarData = await client.fetch(`*[_type == "navbar"][0]{
 		<div class="global-background"></div>
 		<main>
 			<slot>
-				<Welcome {...welcomeData}/>
 				<Navbar {...navbarData}/>
+				<Welcome {...welcomeData}/>
+
 				<CardList {...cardListData}/>
 				<Socials {...socialsData}/>
 			</slot>

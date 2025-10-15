@@ -5,6 +5,7 @@ export type card = {
     headline: string,
     subheadline: string,
     text: string,
+    cardLink: string,
     image?: string,
     video?: string
 }
@@ -27,9 +28,9 @@ const {
             return(
                     <article class="card">
                         <h3 class="text">{carditem.headline}</h3>
-                        <a class="text">{carditem.subheadline}</a>
+                        <h4 class="text">{carditem.subheadline}</h4>
                         {carditem.image &&
-                                <a href="https://google.com">
+                                <a href={carditem.cardLink}>
                                     <img src={urlFor(carditem.image)}  alt={headline} class="img" />
                                 </a>
                         }
