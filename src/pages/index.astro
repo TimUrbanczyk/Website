@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import "../styles/index.css"
 import CardList from "../components/CardList.astro";
 import Socials from "../components/Socials.astro"
+import Navbar  from '../components/Navbar.astro';
 import {client} from "../lib/sanity";
 
 const cardListData = await client.fetch(`*[_type == "cardList"][0]{
@@ -30,6 +31,14 @@ const socialsData = await client.fetch(`*[_type == "socialList"][0]{
   }
 }`)
 
+const navbarData = await client.fetch(`*[_type == "navbar"][0]{
+	navbarHeadline,
+	navbarItems[]{
+		itemText,
+		itemLink
+	}
+}`)
+
 
 ---
 <html>
@@ -42,6 +51,7 @@ const socialsData = await client.fetch(`*[_type == "socialList"][0]{
 		<main>
 			<slot>
 				<Welcome {...welcomeData}/>
+				<Navbar {...navbarData}/>
 				<CardList {...cardListData}/>
 				<Socials {...socialsData}/>
 			</slot>
