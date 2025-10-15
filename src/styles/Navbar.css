@@ -1,0 +1,21 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(20, 20, 20, 0.5);
+    padding: 10px;
+    border-radius: 12px;
+}
+.navbarItemList {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    gap: 2rem;
+}
+
+#navbarText {
+    text-decoration: none;
+}
+
+#navbarText:hover {
+    text-decoration: underline;
+}

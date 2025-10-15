@@ -4,6 +4,7 @@
     align-items: center;
     padding: 0 2rem;
     gap: 1rem;
+
 }
 
 .headlines {
@@ -12,6 +13,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+
 }
 
 .portrait {
@@ -36,7 +38,7 @@
         padding: 0 1rem;
     }
 
-    .headlines {
+    .welcomeText {
         grid-column: 1;
         order: 2;
     }
@@ -53,11 +55,11 @@
         padding: 0 0.5rem;
     }
 
-    .headlines h1 {
+    .welcomeText h1 {
         font-size: 1.5rem;
     }
 
-    .headlines p {
+    .welcomeText p {
         font-size: 0.9rem;
     }
 }
