@@ -5,9 +5,10 @@ import {social} from "./Social"
 import {socialList} from "./SocialList"
 import {navbarItem} from "./NavbarItem"
 import {navbar} from "./Navbar"
+import {text} from "./Text"
 
 export const schemaTypes = [
     card, cardList, welcome,
     social, socialList, navbar,
-    navbarItem
+    navbarItem, text
 ]
