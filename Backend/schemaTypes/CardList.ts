@@ -9,7 +9,6 @@ export const cardList = defineType({
       name: 'headline',
       title: 'Section Headline',
       type: 'string',
-      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'cards',
