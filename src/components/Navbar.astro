@@ -16,7 +16,7 @@ const {
 }=Astro.props
 ---
 
-<div class="navbar">
+<section class="navbar" id="navbar">
     <h1 class="text">{navbarHeadline}</h1>
     <div class="navbarItemList">
         {navbarItems.map((navbarItem : navbarItem) => {
@@ -27,4 +27,4 @@ const {
            )
         })}
     </div>
-</div>
+</section>

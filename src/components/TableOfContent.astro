@@ -1,0 +1,29 @@
+---
+type link = {
+    linkText: string,
+    sectionId: string
+}
+
+type tocLinkList = {
+    headline: string,
+    contents: string[]
+}
+
+const {
+    headline,
+    contents = []
+}=Astro.props
+---
+
+<div class="tableOfContent">
+    <h3 class="text">{headline}</h3>
+    <div class="inner">
+        {contents.map((link: link) => {
+            return(
+                <div class="tocItem">
+                    <a clas="text" href={`#${link.sectionId}`}>{link.linkText}</a>
+                </div>
+            )
+        })}
+    </div>
+</div>
