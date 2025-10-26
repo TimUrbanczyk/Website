@@ -4,7 +4,7 @@ import "../styles/page.css"
 import Socials from "../components/Socials.astro"
 import Navbar  from '../components/Navbar.astro';
 import {client, urlFor} from "../lib/sanity";
-import TableOfContent from '../components/TableOfContent.astro';
+import ImagePanel from "../components/ImagePanel.astro";
 
 
 const welcomeData = await client.fetch(`*[_type == "welcome"][0]{
@@ -28,11 +28,11 @@ const navbarData = await client.fetch(`*[_type == "navbar"][0]{
 	}
 }`)
 
-const tableOfContentData = await client.fetch(`*[_type == "tableOfContent"][0]{
-	headline,
-	contents[]{
-		linkText,
-		sectionId
+
+const imagePanelData = await client.fetch(`*[_type == "imagePanel"][0]{
+	bgImage,
+	imagePanelItems[]{
+		imagePanelItemIcon
 	}
 }`)
 
@@ -49,11 +49,8 @@ const tableOfContentData = await client.fetch(`*[_type == "tableOfContent"][0]{
 		<main>
 			<slot>
 				<Navbar {...navbarData} />
-				<div class="toc-welcome">
-					<TableOfContent {...tableOfContentData}/>
-					<Welcome {...welcomeData}/>
-				</div>
-
+				<Welcome {...welcomeData}/>
+				<ImagePanel {...imagePanelData}/>
 				<Socials {...socialsData}/>
 			</slot>
 		</main>

@@ -1,0 +1,30 @@
+---
+import {urlFor} from "../lib/sanity";
+import "../styles/ImagePanel.css"
+
+type imagePanelItem = {
+    imagePanelItemIcon: string,
+}
+
+type imagePanel = {
+    imagePanelItems: imagePanelItem[]
+}
+
+const {
+    imagePanelItems =  []
+}=Astro.props
+---
+
+<section class="imagePanel">
+    <div class="inner">
+        {imagePanelItems.map((item : imagePanelItem) => {
+            return(
+                <div class="imagePanelItem">
+                    <figure>
+                        <img src={urlFor(item.imagePanelItemIcon)}>
+                    </figure>
+                </div>
+            )
+        })}
+    </div>
+</section>

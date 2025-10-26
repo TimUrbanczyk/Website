@@ -6,12 +6,11 @@ import {socialList} from "./SocialList"
 import {navbarItem} from "./NavbarItem"
 import {navbar} from "./Navbar"
 import {text} from "./Text"
-import {tableOfContent} from "./TableOfContent";
-import {tableOfContentItem} from "./TableOfContentItem";
+
+import {imagePanel} from "./ImagePanel";
 
 export const schemaTypes = [
     card, cardList, welcome,
     social, socialList, navbar,
-    navbarItem, text, tableOfContent,
-    tableOfContentItem
+    navbarItem, text, imagePanel
 ]

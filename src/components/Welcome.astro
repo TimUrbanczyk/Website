@@ -16,19 +16,18 @@ const introductionTextData = await client.fetch(`*[_type == "textType"][0]{
 }`)
 ---
 
-
-
 <div>
 	<section class="welcome" id="welcome">
 		<div class ="headlines">
 			<h1 class="text">{headline}</h1>
 			<a class="text">{subHeadline}</a>
 		</div>
+		<figure class="portrait">
+			<img src={urlFor(image)} alt="welcomeImage" class="image"/>
+		</figure>
 	</section>
 	<Text {...introductionTextData}/>
 </div>
-<figure class="portrait">
-	<img src={urlFor(image)} alt="welcomeImage" class="image"/>
-</figure>
+
 
 
