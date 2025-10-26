@@ -1,0 +1,24 @@
+.tableOfContent {
+    display: inline-block;
+    border-radius: 3%;
+    padding: 0 0.4rem;
+    line-height: 1;
+    height: auto;
+}
+
+.tocWrapper {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+#textToc:hover {
+    color: gray;
+}
+
+
+.tocItem {
+    margin-top: 0.4rem;
+    max-width: 5.5%;
+}
+

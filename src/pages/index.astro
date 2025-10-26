@@ -47,12 +47,15 @@ const tableOfContentData = await client.fetch(`*[_type == "tableOfContent"][0]{
 		<main>
 			<slot>
 				<Navbar {...navbarData}/>
-				<TableOfContent {...tableOfContentData}/>
-				<Welcome {...welcomeData}/>
+				<div class="toc-welcome">
+					<TableOfContent {...tableOfContentData}/>
+					<Welcome {...welcomeData}/>
+				</div>
 				<Socials {...socialsData}/>
 			</slot>
 		</main>
 	</body>
 </html>
+
 
 

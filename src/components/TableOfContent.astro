@@ -1,4 +1,5 @@
 ---
+import "../styles/TableOfContent.css"
 type link = {
     linkText: string,
     sectionId: string
@@ -14,16 +15,17 @@ const {
     contents = []
 }=Astro.props
 ---
-
-<div class="tableOfContent">
-    <h3 class="text">{headline}</h3>
-    <div class="inner">
-        {contents.map((link: link) => {
-            return(
-                <div class="tocItem">
-                    <a clas="text" href={`#${link.sectionId}`}>{link.linkText}</a>
-                </div>
-            )
-        })}
+<div class="tocWrapper">
+    <div class="tableOfContent">
+        <h3 class="text" id="headlineToc">{headline}</h3>
+        <div class="inner">
+            {contents.map((link: link) => {
+                return(
+                    <div class="tocItem">
+                        <a class="text" id="textToc" href={`#${link.sectionId}`}>{link.linkText}</a>
+                    </div>
+                )
+            })}
+        </div>
     </div>
 </div>
