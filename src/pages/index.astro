@@ -3,8 +3,9 @@ import Welcome from '../components/Welcome.astro';
 import "../styles/page.css"
 import Socials from "../components/Socials.astro"
 import Navbar  from '../components/Navbar.astro';
-import {client} from "../lib/sanity";
+import {client, urlFor} from "../lib/sanity";
 import TableOfContent from '../components/TableOfContent.astro';
+
 
 const welcomeData = await client.fetch(`*[_type == "welcome"][0]{
 	headline,
@@ -36,6 +37,7 @@ const tableOfContentData = await client.fetch(`*[_type == "tableOfContent"][0]{
 }`)
 
 
+
 ---
 <html>
 	<head>
@@ -46,11 +48,12 @@ const tableOfContentData = await client.fetch(`*[_type == "tableOfContent"][0]{
 		<div class="global-background"></div>
 		<main>
 			<slot>
-				<Navbar {...navbarData}/>
+				<Navbar {...navbarData} />
 				<div class="toc-welcome">
 					<TableOfContent {...tableOfContentData}/>
 					<Welcome {...welcomeData}/>
 				</div>
+
 				<Socials {...socialsData}/>
 			</slot>
 		</main>
