@@ -7,29 +7,27 @@ type imagePanelItem = {
 }
 
 type imagePanel = {
+    directionToggler,
     imagePanelItems: imagePanelItem[]
 }
 
 const {
+    directionToggler,
     imagePanelItems = []
 } = Astro.props
+console.log(Astro.props)
 ---
 
 <section class="imagePanel">
-    <div class="inner">
-        {imagePanelItems.map((item : imagePanelItem) => (
-                <div class="imagePanelItem">
-                    <figure>
-                        <img src={urlFor(item.imagePanelItemIcon)} alt="" />
-                    </figure>
-                </div>
-        ))}
-        {imagePanelItems.map((item : imagePanelItem) => (
-                <div class="imagePanelItem">
-                    <figure>
-                        <img src={urlFor(item.imagePanelItemIcon)} alt="" />
-                    </figure>
-                </div>
+    <div class={`inner--${directionToggler}`}>
+        {[...Array(4)].map(() => (
+            imagePanelItems.map((item : imagePanelItem) => (
+                    <div class="imagePanelItem">
+                        <figure>
+                            <img class="imagePanelImage" src={urlFor(item.imagePanelItemIcon)} alt="" />
+                        </figure>
+                    </div>
+            ))
         ))}
     </div>
 </section>

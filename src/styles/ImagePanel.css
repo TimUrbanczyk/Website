@@ -2,28 +2,48 @@
     width: 100%;
     overflow: hidden;
     background-color: #333333;
-    padding: 20px 0;
-    margin-top: 150px;
 }
 
-.inner {
+.inner--true {
     display: flex;
     width: max-content;
-    animation: scroll 10s linear infinite;
+    animation: scroll1 15s linear infinite;
+    gap: 1.5rem;
 }
 
+.inner--false {
+    display: flex;
+    width: max-content;
+    height: auto;
+    animation: scroll2 15s linear infinite;
+    gap: 1.5rem;
+}
 
 .imagePanelItem {
     flex: 0 0 auto;
     display: flex;
 }
 
-
-@keyframes scroll {
+.imagePanelImage{
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    display: block;
+}
+@keyframes scroll1 {
     0% {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-50%);
+        transform: translateX(-25%);
+    }
+}
+
+@keyframes scroll2 {
+    0% {
+        transform: translateX(-25%);
+    }
+    100% {
+        transform: translateX(0);
     }
 }

@@ -29,8 +29,8 @@ const navbarData = await client.fetch(`*[_type == "navbar"][0]{
 }`)
 
 
-const imagePanelData = await client.fetch(`*[_type == "imagePanel"][0]{
-	bgImage,
+const imagePanelData = await client.fetch(`*[_type == "imagePanel"]{
+	directionToggler,
 	imagePanelItems[]{
 		imagePanelItemIcon
 	}
@@ -50,7 +50,8 @@ const imagePanelData = await client.fetch(`*[_type == "imagePanel"][0]{
 			<slot>
 				<Navbar {...navbarData} />
 				<Welcome {...welcomeData}/>
-				<ImagePanel {...imagePanelData}/>
+				<ImagePanel {...imagePanelData[0]}/>
+				<ImagePanel {...imagePanelData[1]}/>
 				<Socials {...socialsData}/>
 			</slot>
 		</main>

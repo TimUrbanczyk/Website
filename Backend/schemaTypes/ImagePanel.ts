@@ -7,6 +7,11 @@ export const imagePanel = defineType({
     type: 'document',
     fields: [
         defineField({
+            name: "directionToggler",
+            title: "left/right",
+            type: "boolean"
+        }),
+        defineField({
             name: 'imagePanelItems',
             title: 'ImagePanelItems',
             type: 'array',
