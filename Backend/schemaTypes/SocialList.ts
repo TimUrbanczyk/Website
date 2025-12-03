@@ -10,7 +10,25 @@ export const socialList = defineType({
             name: 'socials',
             title: 'Socials',
             type: 'array',
-            of: [{ type: 'social' }],
+            of: [{
+              name: 'social',
+              title: 'Social',
+              type: 'object',
+              fields: [
+                defineField({
+                  name: 'socialLink',
+                  title: 'SocialLink',
+                  type: 'string',
+                  validation: Rule => Rule.required(),
+                }),
+                defineField({
+                  name: 'socialIcon',
+                  title: 'SocialIcon',
+                  type: 'image',
+                  options: { hotspot: true },
+                })
+              ]
+            }],
         }),
     ],
 })

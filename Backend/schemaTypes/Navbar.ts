@@ -15,7 +15,21 @@ export const navbar = defineType({
             title: 'NavbarItems',
             type: 'array',
             of: [{
-                type: 'navbarItem'
+              name: 'navbarItem',
+              title: 'NavbarItem',
+              type: 'object',
+              fields:  [
+                defineField({
+                  name: 'itemText',
+                  title: 'ItemText',
+                  type: 'string'
+                }),
+                defineField({
+                  name: 'itemLink',
+                  title: 'ItemLink',
+                  type: 'string'
+                })
+              ]
             }]
 
         })
