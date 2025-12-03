@@ -1,0 +1,63 @@
+---
+import {CvItem, CvList} from "../../Backend/schemaTypes/CVList";
+import '../styles/CVList.css'
+const cvListProps : CvList = Astro.props;
+import {timeout} from "rxjs";
+
+---
+
+<section class="cvListWrapper">
+    <div class="cvListInner">
+    {cvListProps.cvItemList.map((item: CvItem, index : number) => {
+        const direction = (index % 2 === 0)  ? 'Left' : 'Right';
+        return(
+            <canvas id="canvas"  class="canvas" ></canvas>
+            <div class={`cvListItem${direction}`}>
+                <h2 class="text">{item.headline}</h2>
+                <h3 class="text">{item.date}</h3>
+                <p class="text">{item.text}</p>
+            </div>
+        )
+    })}
+    </div>
+</section>
+
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const cvItems = document.querySelectorAll('.cvListItemLeft, .cvListItemRight');
+        const numberCVListItems = cvItems.length;
+        const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+        const ctx = canvas.getContext("2d");
+        canvas.width = screen.width;
+        canvas.height = screen.height;
+        if(!ctx) return;
+
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 4;
+
+        let lastScroll = canvas.height/numberCVListItems;
+
+
+        function drawLine(){
+            ctx?.clearRect(0, 0, canvas.width, canvas.height);
+            ctx?.beginPath();
+            ctx?.moveTo(canvas.width/2, 0);
+            ctx?.lineTo(canvas.width/2, lastScroll);
+            ctx?.stroke();
+        }
+
+
+
+
+        window.addEventListener('scroll', (e) => {
+            lastScroll = window.scrollY;
+            drawLine();
+        });
+
+    });
+
+</script>
+
+
