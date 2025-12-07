@@ -2,7 +2,6 @@
 import {CvItem, CvList} from "../../Backend/schemaTypes/CVList";
 import '../styles/CVList.css'
 const cvListProps : CvList = Astro.props;
-import {timeout} from "rxjs";
 
 ---
 
@@ -11,7 +10,7 @@ import {timeout} from "rxjs";
     {cvListProps.cvItemList.map((item: CvItem, index : number) => {
         const direction = (index % 2 === 0)  ? 'Left' : 'Right';
         return(
-            <canvas id="canvas"  class="canvas" ></canvas>
+            <canvas id="canvas" class="canvas"></canvas>
             <div class={`cvListItem${direction}`}>
                 <h2 class="text">{item.headline}</h2>
                 <h3 class="text">{item.date}</h3>
@@ -36,28 +35,45 @@ import {timeout} from "rxjs";
 
         ctx.strokeStyle = 'white';
         ctx.lineWidth = 4;
+        let minHeight = canvas.height/numberCVListItems
+        let currentHeight = minHeight;
+        drawLine(minHeight);
+        toggleItemVisibility(currentHeight);
 
-        let lastScroll = canvas.height/numberCVListItems;
 
-
-        function drawLine(){
+        function drawLine(newHeight: number) {
             ctx?.clearRect(0, 0, canvas.width, canvas.height);
             ctx?.beginPath();
-            ctx?.moveTo(canvas.width/2, 0);
-            ctx?.lineTo(canvas.width/2, lastScroll);
+            ctx?.moveTo(screen.width/2, 0);
+            ctx?.lineTo(screen.width/2, newHeight);
             ctx?.stroke();
         }
 
+        function toggleItemVisibility(currentHeight: number) {
+            for(let i = 0; i < numberCVListItems; i++){
+                if(currentHeight <= ((i+1)*canvas.height/numberCVListItems)+100
+                    && currentHeight > ((i+1)*canvas.height/numberCVListItems)-100){
+                    cvItems[i].style.opacity = '1';
+                }
+            }
+        }
 
 
-
-        window.addEventListener('scroll', (e) => {
-            lastScroll = window.scrollY;
-            drawLine();
+        window.addEventListener('wheel', (e) => {
+            let newHeight = currentHeight + e.deltaY;
+            if(newHeight < minHeight){
+                newHeight = minHeight;
+            }else if(newHeight > canvas.height){
+                newHeight = canvas.height;
+            }
+            currentHeight = newHeight;
+            drawLine(newHeight);
+            toggleItemVisibility(currentHeight);
         });
 
     });
 
 </script>
+
 
 
