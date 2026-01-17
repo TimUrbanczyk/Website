@@ -4,7 +4,7 @@ import "../styles/page.css"
 import Socials from "../components/Socials.astro"
 import Navbar  from '../components/Navbar.astro';
 import {client, urlFor} from "../lib/sanity";
-import ImagePanel from "../components/ImagePanel.astro";
+import CardList from "../components/CardList.astro";
 
 
 const welcomeData = await client.fetch(`*[_type == "welcome"][0]{
@@ -28,13 +28,19 @@ const navbarData = await client.fetch(`*[_type == "navbar"][0]{
 	}
 }`)
 
-
-const imagePanelData = await client.fetch(`*[_type == "imagePanel"]{
-	directionToggler,
-	imagePanelItems[]{
-		imagePanelItemIcon
-	}
+const cardListData = await client.fetch(`*[_type == "cardList"][0]{
+    headline,
+    cards[]{
+        headline,
+        subHeadline,
+        text,
+        cardLink,
+        image,
+        video
+    }
 }`)
+
+
 
 
 
@@ -50,8 +56,7 @@ const imagePanelData = await client.fetch(`*[_type == "imagePanel"]{
 			<slot>
 				<Navbar {...navbarData} />
 				<Welcome {...welcomeData}/>
-				<ImagePanel {...imagePanelData[0]}/>
-				<ImagePanel {...imagePanelData[1]}/>
+                <div id="technologies"><CardList {...cardListData} /></div>
 				<Socials {...socialsData}/>
 			</slot>
 		</main>

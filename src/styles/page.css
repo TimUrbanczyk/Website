@@ -13,3 +13,9 @@
     justify-content: center;
     align-self: center;
 }
+
+#technologies{
+    margin-top: 15vh ;
+    position: relative;
+    background: linear-gradient(135deg, #111111, #2a2929, #444444, #5e5e5e);
+}
