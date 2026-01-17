@@ -1,6 +1,7 @@
 ---
-import {urlFor} from '../lib/sanity.ts'
-import '../styles/CardList.css'
+import { urlFor } from '../lib/sanity.ts';
+import '../styles/CardList.css';
+
 export type card = {
     headline: string,
     subheadline: string,
@@ -8,39 +9,38 @@ export type card = {
     cardLink: string,
     image?: string,
     video?: string
-}
+};
 
 export type cardList = {
     headline: string,
     cards: card[]
-}
+};
 
-const {
-    headline,
-    cards = []
-}=Astro.props as cardList
+const { headline, cards = [] } = Astro.props as cardList;
 ---
 
-<section class="cardList">
+<section class={`cardList${headline}`}>
     <h2 class="text">{headline}</h2>
-    <div class="cardsGrid">
-        {cards.map((carditem : card) => {
-            return(
-                    <article class="card">
-                        <h3 class="text">{carditem.headline}</h3>
-                        <h4 class="text">{carditem.subheadline}</h4>
-                        {carditem.image &&
-                                <a href={carditem.cardLink}>
-                                    <img src={urlFor(carditem.image)}  alt={headline} class="img" />
-                                </a>
-                        }
-                        {carditem.video &&
-                                <a href="">
-                                    <video src={urlFor(carditem.video)} controls/>
-                                </a>
-                        }
-                        <p class="text">{carditem.text}</p>
-                    </article>)
-        })}
+    <div class={`cardsGrid${headline}`}>
+        {cards.map((carditem: card) => (
+                <article class={`card${headline}`}>
+                    <h3 class="text">{carditem.headline}</h3>
+                    <h4 class="text">{carditem.subheadline}</h4>
+
+                    {carditem.image && (
+                            <a href={carditem.cardLink}>
+                                <img src={urlFor(carditem.image)} alt={carditem.headline} class={`img${headline}`} />
+                            </a>
+                    )}
+
+                    {carditem.video && (
+                            <a href={carditem.cardLink}>
+                                <video src={urlFor(carditem.video)} controls />
+                            </a>
+                    )}
+
+                    <p class="text">{carditem.text}</p>
+                </article>
+        ))}
     </div>
 </section>

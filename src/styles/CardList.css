@@ -1,4 +1,139 @@
-.cardList {
+.cardListTechnologies {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 1rem;
+    gap: 3rem;
+}
+
+.cardListTechnologies h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #dcdcdc, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cardsGridTechnologies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem 0;
+}
+
+.cardTechnologies {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    background: rgba(20, 20, 20, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(220, 220, 220, 0.1);
+    border-radius: 24px;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.cardTechnologies::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(220, 220, 220, 0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.cardTechnologies:hover {
+    transform: translateY(-8px);
+    background: rgba(20, 20, 20, 0.6);
+    border-color: rgba(220, 220, 220, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(220, 220, 220, 0.05);
+}
+
+.cardTechnologies:hover::before {
+    opacity: 1;
+}
+
+.cardTechnologies h3 {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 600;
+    margin: 1rem 0 0.5rem;
+    color: #ffffff;
+}
+
+.cardTechnologies h4 {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 400;
+    margin: 0 0 1.5rem;
+    color: rgba(220, 220, 220, 0.7);
+}
+
+.cardTechnologies p {
+    line-height: 1.7;
+    color: rgba(220, 220, 220, 0.85);
+    margin-top: 1rem;
+}
+
+.cardTechnologies a {
+    display: block;
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 1rem 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cardTechnologies a:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.imgTechnologies {
+    border-radius: 16px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+}
+
+.cardTechnologies video {
+    border-radius: 16px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .cardsGridTechnologies {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .cardTechnologies {
+        padding: 1.5rem;
+    }
+
+    .cardListTechnologies {
+        padding: 2rem 1rem;
+    }
+}
+
+.cardListProjekts {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,14 +141,14 @@
     text-align: center;
 }
 
-.cardsGrid {
+.cardsGridProjekts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
     gap: 2rem;
     width: 100%;
     max-width: 1100px;
 }
-.card {
+.cardProjekts {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,7 +156,7 @@
     text-align: center;
 }
 
-.img {
+.imgProjekts {
     border-radius: 3%;
     width: 480px;
     height: 270px;

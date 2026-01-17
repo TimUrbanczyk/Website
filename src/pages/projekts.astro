@@ -6,7 +6,7 @@ import {client} from "../lib/sanity";
 import "../styles/page.css"
 
 
-const cardListData = await client.fetch(`*[_type == "cardList"][0]{
+const cardListData = await client.fetch(`*[_type == "cardList"][1]{
     headline,
     cards[]{
         headline,
