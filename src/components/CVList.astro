@@ -5,12 +5,13 @@ const cvListProps : CvList = Astro.props;
 
 ---
 
-<section class="cvListWrapper">
+<section id="cvListWrapper" class="cvListWrapper">
     <div class="cvListInner">
+        <canvas id="canvas" class="canvas"></canvas>
     {cvListProps.cvItemList.map((item: CvItem, index : number) => {
         const direction = (index % 2 === 0)  ? 'Left' : 'Right';
         return(
-            <canvas id="canvas" class="canvas"></canvas>
+
             <div class={`cvListItem${direction}`}>
                 <h2 class="text">{item.headline}</h2>
                 <h3 class="text">{item.date}</h3>
@@ -29,8 +30,12 @@ const cvListProps : CvList = Astro.props;
         const numberCVListItems = cvItems.length;
         const canvas = document.getElementById('canvas') as HTMLCanvasElement;
         const ctx = canvas.getContext("2d");
-        canvas.width = screen.width;
-        canvas.height = screen.height;
+        const cvListWrapper = document.getElementById('cvListWrapper');
+        if(cvListWrapper) {
+            canvas.width = cvListWrapper.offsetWidth
+            canvas.height = cvListWrapper.offsetHeight;
+        }
+
         if(!ctx) return;
 
         ctx.strokeStyle = 'white';
@@ -38,7 +43,19 @@ const cvListProps : CvList = Astro.props;
         let minHeight = canvas.height/numberCVListItems
         let currentHeight = minHeight;
         drawLine(minHeight);
-        toggleItemVisibility(currentHeight);
+        setItemVisebel(currentHeight);
+        let targetHeight = currentHeight;
+        const easing = 0.1;
+
+        function animateLine() {
+            if (!ctx) return;
+            currentHeight += (targetHeight - currentHeight) * easing;
+            drawLine(currentHeight);
+            setItemVisebel(currentHeight);
+            if (Math.abs(targetHeight - currentHeight) > 0.5) {
+                requestAnimationFrame(animateLine);
+            }
+        }
 
 
         function drawLine(newHeight: number) {
@@ -47,28 +64,31 @@ const cvListProps : CvList = Astro.props;
             ctx?.moveTo(screen.width/2, 0);
             ctx?.lineTo(screen.width/2, newHeight);
             ctx?.stroke();
+
         }
 
-        function toggleItemVisibility(currentHeight: number) {
+        function setItemVisebel(currentHeight: number) {
             for(let i = 0; i < numberCVListItems; i++){
-                if(currentHeight <= ((i+1)*canvas.height/numberCVListItems)+100
-                    && currentHeight > ((i+1)*canvas.height/numberCVListItems)-100){
+                if(currentHeight <= ((i+1)*canvas.height/numberCVListItems)+50
+                    && currentHeight > ((i+1)*canvas.height/numberCVListItems)-50){
                     cvItems[i].style.opacity = '1';
                 }
             }
         }
 
+        function lockLineInMaxHeight() {
+            minHeight = canvas.height;
+        }
+
 
         window.addEventListener('wheel', (e) => {
-            let newHeight = currentHeight + e.deltaY;
-            if(newHeight < minHeight){
-                newHeight = minHeight;
-            }else if(newHeight > canvas.height){
-                newHeight = canvas.height;
+            targetHeight += e.deltaY;
+            if (targetHeight < minHeight) targetHeight = minHeight;
+            if (targetHeight > canvas.height) {
+                targetHeight = canvas.height;
+                lockLineInMaxHeight();
             }
-            currentHeight = newHeight;
-            drawLine(newHeight);
-            toggleItemVisibility(currentHeight);
+            animateLine();
         });
 
     });
